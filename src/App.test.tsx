@@ -52,4 +52,3 @@ test('clicking button increments counter display', () => {
   //then
   expect(count).toBe('1')
 })
-Install related packages to use TypeScript
