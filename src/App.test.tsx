@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, {shallow} from 'enzyme'
 import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17'
-import App from './App'
+
 import Section2 from './section2'
 Enzyme.configure({adapter: new EnzymeAdapter()})
 
@@ -11,6 +11,7 @@ Enzyme.configure({adapter: new EnzymeAdapter()})
  * @function setup
  * @returns {ShallowWrapper}
  */
+
 const setup = () => shallow(<Section2 />)
 
 const findTestAttr = (wrapper, val) => wrapper.find(`[data-test='${val}']`)
@@ -51,4 +52,17 @@ test('clicking button increments counter display', () => {
   const count = findTestAttr(wrapper, 'count').text()
   //then
   expect(count).toBe('1')
+})
+
+test('clicking button decrement counter display', () => {
+  //given
+  const wrapper = setup()
+  const button = findTestAttr(wrapper, 'decrement-button')
+
+  //when
+  button.simulate('click')
+  const count = findTestAttr(wrapper, 'count').text()
+
+  //then
+  expect(count).toBe('0')
 })
